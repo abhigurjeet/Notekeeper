@@ -5,7 +5,20 @@ import Note from './Note';
 import CreateArea from './CreateArea';
 function App() {
     let [noteData, setData] = React.useState([]);
+    function checkEmpty(word){
+        let count=0;
+        for(let i=0;i<word.length;i++){
+            if(word[i]===' ')
+            ++count;
+        }
+        if(count===word.length)
+        return true;
+        else 
+        return false;
+    }
     function onAddHandle(title, content) {
+        if(checkEmpty(title)&&checkEmpty(content))
+        return ;
         setData(prev=>[...prev,{title:title,content:content}]);
     }
     function onHandleDelete(ind){
